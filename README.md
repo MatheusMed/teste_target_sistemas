@@ -1,10 +1,10 @@
-# 📌 Aplicação Flutter - Task App
+# Target Sistemas Task App
 
-Este projeto foi desenvolvido utilizando **Flutter**, integrando **MobX** para gerenciamento de estado e **Sqflite** para armazenamento local.
+Este é um projeto de aplicação Flutter para gerenciamento de atividades (Tasks) que utiliza a arquitetura MobX para gerenciamento de estado e o Sqflite para persistência local de dados.
 
 ---
 
-## 🚀 Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 - **Flutter**
 - **MobX**
@@ -12,30 +12,7 @@ Este projeto foi desenvolvido utilizando **Flutter**, integrando **MobX** para g
 - **SQLite**
 - **Build Runner**
 
----
-
-## 📦 Dependências principais
-
-Certifique-se de que as seguintes dependências estejam no `pubspec.yaml`:
-
-```yaml
-dependencies:
-  flutter:
-    sdk: flutter
-  mobx: ^2.0.0
-  flutter_mobx: ^2.0.0
-  sqflite: ^2.0.0+4
-  path: ^1.8.0
-  path_provider: ^2.0.0
-
-dev_dependencies:
-  mobx_codegen: ^2.0.0
-  build_runner: ^2.3.0
-```
-
----
-
-## ⚙️ Configuração Inicial
+## Configuração Inicial
 
 Antes de executar o projeto, rode o comando:
 
@@ -47,7 +24,7 @@ Este comando irá baixar todas as dependências necessárias.
 
 ---
 
-## 🔨 Gerando Arquivos .g do MobX
+## Gerando Arquivos .g do MobX
 
 O MobX exige geração automática de código, então execute:
 
@@ -65,7 +42,7 @@ flutter pub run build_runner watch --delete-conflicting-outputs
 
 ---
 
-## 🗄️ Banco de Dados
+## Banco de Dados
 
 O app utiliza **Sqflite** para salvar os dados localmente.
 
@@ -85,42 +62,27 @@ flutter run
 
 ---
 
-## 📁 Estrutura do Projeto
+## Estrutura do Projeto
 
 ```bash
 lib/
- ├─ core/
- │   └─ dao/            # Acesso ao banco de dados (Sqflite)
- │
- ├─ model/
- │   └─ task_entity.dart
- │
- ├─ stores/
- │   └─ home_store.dart # Store principal com MobX
- │
- ├─ views/
- │   └─ detalhes_view.dart
- │
- └─ widgets/
-     └─ grafico_view.dart
+├── taskApp/
+│   ├── core/
+│   │   ├── dao/         # Acesso ao banco de dados (Sqflite)
+│   │   ├── extensions/  # Métodos de extensão
+│   │   ├── styles/      # Estilos e temas customizados
+│   │   └── widgets/     # Widgets reutilizáveis (Ex: TextFormCustom)
+│   ├── model/           # Definição dos modelos de dados (Ex: TaskEntity)
+│   ├── stores/          # Gerenciamento de Estado MobX (Ex: HomeStore)
+│   └── views/           # Camada de Apresentação (Telas/Views)
+└── main.dart
 ```
 
 ---
 
-## ✔️ Observações
+## Observações
 
-- Sempre rode o build_runner após alterações no store.
 - Caso erro de colisão de arquivos apareça, utilize `--delete-conflicting-outputs`.
 - O banco de dados é criado automaticamente com Sqflite.
 
 ---
-
-## 💡 Dica
-
-Caso o app falhe com erro `no column named`, lembre-se de **incrementar versão no `onUpgrade`** ou **desinstalar o app** para limpar o DB.
-
----
-
-## 📞 Suporte
-
-Se precisar de melhorias ou dúvidas, entre em contato.
