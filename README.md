@@ -1,67 +1,126 @@
-🎯 Target Sistemas Task App
+# 📌 Aplicação Flutter - Task App
 
-Este é um projeto de aplicação Flutter para gerenciamento de atividades (Tasks) que utiliza a arquitetura MobX para gerenciamento de estado e o Sqflite para persistência local de dados.
+Este projeto foi desenvolvido utilizando **Flutter**, integrando **MobX** para gerenciamento de estado e **Sqflite** para armazenamento local.
 
-⚙️ Estrutura do Projeto
+---
 
-O projeto segue uma estrutura modular e organizada, focada na separação de responsabilidades (Clean Architecture ou similar):
+## 🚀 Tecnologias Utilizadas
 
-lib/
-├── taskApp/
-│   ├── core/      # Componentes essenciais e utilitários
-│   │   ├── dao/   # Camada de Acesso a Dados (Sqflite)
-│   │   ├── extensions/ # Métodos de extensão
-│   │   ├── styles/  # Estilos e temas customizados
-│   │   └── widgets/ # Widgets reutilizáveis (Ex: TextFormCustom)
-│   ├── model/     # Definição dos modelos de dados (Ex: TaskEntity)
-│   ├── stores/    # Gerenciamento de Estado MobX (Ex: HomeStore)
-│   ├── views/     # Camada de Apresentação (Telas/Widgets)
-│   └── main.dart
-└── main.dart
+- **Flutter**
+- **MobX**
+- **Sqflite** (persistência local)
+- **SQLite**
+- **Build Runner**
 
+---
 
-core/dao: Contém a lógica de comunicação com o banco de dados Sqflite, responsável por CRUD (Criar, Ler, Atualizar, Deletar) das tarefas.
+## 📦 Dependências principais
 
-model: Contém a classe TaskEntity, que representa a tabela de tarefas no banco de dados.
+Certifique-se de que as seguintes dependências estejam no `pubspec.yaml`:
 
-stores: Contém as classes HomeStore, que gerenciam o estado da aplicação e a comunicação com o dao.
+```yaml
+dependencies:
+  flutter:
+    sdk: flutter
+  mobx: ^2.0.0
+  flutter_mobx: ^2.0.0
+  sqflite: ^2.0.0+4
+  path: ^1.8.0
+  path_provider: ^2.0.0
 
-views: Contém as telas principais do aplicativo (HomeView, DetalhesView).
+dev_dependencies:
+  mobx_codegen: ^2.0.0
+  build_runner: ^2.3.0
+```
 
-💾 Persistência de Dados (Sqflite)
+---
 
-O aplicativo utiliza o Sqflite para armazenar dados de forma local no dispositivo do usuário.
+## ⚙️ Configuração Inicial
 
-Onde os dados são salvos:
+Antes de executar o projeto, rode o comando:
 
-Atividades (Tasks): Todas as tarefas criadas, editadas e deletadas são persistidas localmente.
-
-Dados do Usuário: O sistema pode utilizar o banco de dados local para armazenar informações de login ou outras preferências do usuário, dependendo da implementação completa do LoginView.
-
-🚀 Como Rodar o Projeto
-
-Siga os passos abaixo para configurar e iniciar o aplicativo.
-
-1. Obtenha as Dependências
-
-Primeiro, você deve garantir que todas as dependências listadas no pubspec.yaml estejam instaladas:
-
+```bash
 flutter pub get
+```
 
+Este comando irá baixar todas as dependências necessárias.
 
-2. Gere os Arquivos MobX (.g files)
+---
 
-Este projeto utiliza o MobX para gerenciamento de estado. O MobX requer a geração de arquivos *.g.dart (chamados de code generation) para implementar o código observável (@observable, @action, @computed).
+## 🔨 Gerando Arquivos .g do MobX
 
-Você deve rodar o seguinte comando para gerar esses arquivos. Sempre execute este comando quando houver alterações nas suas classes Store (.dart):
+O MobX exige geração automática de código, então execute:
 
+```bash
 flutter pub run build_runner build --delete-conflicting-outputs
+```
 
+Sempre que alterar stores, rode novamente este comando.
 
-💡 Dica: O argumento --delete-conflicting-outputs é crucial para limpar arquivos antigos e garantir que a geração seja bem-sucedida.
+Caso queira assistir alterações em tempo real, use:
 
-3. Inicie o Aplicativo
+```bash
+flutter pub run build_runner watch --delete-conflicting-outputs
+```
 
-Após gerar os arquivos, você pode iniciar a aplicação em qualquer dispositivo ou simulador conectado:
+---
 
+## 🗄️ Banco de Dados
+
+O app utiliza **Sqflite** para salvar os dados localmente.
+
+- Todas as tarefas criadas são armazenadas no SQLite.
+- Informações persistem mesmo ao fechar o aplicativo.
+- Geração de tabela automática no primeiro uso.
+
+---
+
+## ▶️ Execução da Aplicação
+
+Após instalar dependências e gerar arquivos MobX, basta rodar:
+
+```bash
 flutter run
+```
+
+---
+
+## 📁 Estrutura do Projeto
+
+```bash
+lib/
+ ├─ core/
+ │   └─ dao/            # Acesso ao banco de dados (Sqflite)
+ │
+ ├─ model/
+ │   └─ task_entity.dart
+ │
+ ├─ stores/
+ │   └─ home_store.dart # Store principal com MobX
+ │
+ ├─ views/
+ │   └─ detalhes_view.dart
+ │
+ └─ widgets/
+     └─ grafico_view.dart
+```
+
+---
+
+## ✔️ Observações
+
+- Sempre rode o build_runner após alterações no store.
+- Caso erro de colisão de arquivos apareça, utilize `--delete-conflicting-outputs`.
+- O banco de dados é criado automaticamente com Sqflite.
+
+---
+
+## 💡 Dica
+
+Caso o app falhe com erro `no column named`, lembre-se de **incrementar versão no `onUpgrade`** ou **desinstalar o app** para limpar o DB.
+
+---
+
+## 📞 Suporte
+
+Se precisar de melhorias ou dúvidas, entre em contato.
