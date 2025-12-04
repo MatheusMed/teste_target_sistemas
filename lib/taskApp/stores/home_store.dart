@@ -22,12 +22,6 @@ abstract class _HomeStoreBase with Store {
   @observable
   int editingId = -1;
 
-  @observable
-  Map<String, double> letrasNumerosTask = {'letras': 0, 'numeros': 0};
-
-  @observable
-  TaskEntity? selectedTask;
-
   @action
   Future<void> loadtasks() async {
     final data = await dao.getAll();

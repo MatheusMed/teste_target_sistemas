@@ -110,50 +110,16 @@ mixin _$HomeStore on _HomeStoreBase, Store {
     });
   }
 
-  late final _$letrasNumerosTaskAtom = Atom(
-    name: '_HomeStoreBase.letrasNumerosTask',
-    context: context,
-  );
-
-  @override
-  Map<String, double> get letrasNumerosTask {
-    _$letrasNumerosTaskAtom.reportRead();
-    return super.letrasNumerosTask;
-  }
-
-  @override
-  set letrasNumerosTask(Map<String, double> value) {
-    _$letrasNumerosTaskAtom.reportWrite(value, super.letrasNumerosTask, () {
-      super.letrasNumerosTask = value;
-    });
-  }
-
-  late final _$selectedTaskAtom = Atom(
-    name: '_HomeStoreBase.selectedTask',
-    context: context,
-  );
-
-  @override
-  TaskEntity? get selectedTask {
-    _$selectedTaskAtom.reportRead();
-    return super.selectedTask;
-  }
-
-  @override
-  set selectedTask(TaskEntity? value) {
-    _$selectedTaskAtom.reportWrite(value, super.selectedTask, () {
-      super.selectedTask = value;
-    });
-  }
-
   late final _$loadtasksAsyncAction = AsyncAction(
     '_HomeStoreBase.loadtasks',
     context: context,
   );
 
   @override
-  Future<void> loadtasks() {
-    return _$loadtasksAsyncAction.run(() => super.loadtasks());
+  ObservableFuture<void> loadtasks() {
+    return ObservableFuture<void>(
+      _$loadtasksAsyncAction.run(() => super.loadtasks()),
+    );
   }
 
   late final _$addTaskAsyncAction = AsyncAction(
@@ -222,8 +188,6 @@ tasks: ${tasks},
 inputText: ${inputText},
 isEditing: ${isEditing},
 editingId: ${editingId},
-letrasNumerosTask: ${letrasNumerosTask},
-selectedTask: ${selectedTask},
 porcentagemTotalLetrasNumeros: ${porcentagemTotalLetrasNumeros},
 totalLinhas: ${totalLinhas},
 totalEdicoes: ${totalEdicoes},
