@@ -40,29 +40,4 @@ class AppDatabase {
       senha TEXT
     );
   ''';
-
-  Future<List<Map<String, dynamic>>> getTasks() async {
-    final db = await database;
-    return await db.query('task');
-  }
-
-  Future<int> addTask(String informacao) async {
-    final db = await database;
-    return await db.insert('task', {'informacao': informacao});
-  }
-
-  Future<int> updateTask(int id, String informacao) async {
-    final db = await database;
-    return await db.update(
-      'task',
-      {'informacao': informacao},
-      where: 'id = ?',
-      whereArgs: [id],
-    );
-  }
-
-  Future<int> deleteTask(int id) async {
-    final db = await database;
-    return await db.delete('task', where: 'id = ?', whereArgs: [id]);
-  }
 }
